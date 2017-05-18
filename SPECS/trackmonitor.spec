@@ -13,12 +13,13 @@ Oneshot script for logging current system state.
 %build
 %install
 install -m 0755 -d ${RPM_BUILD_ROOT}/etc/trackmonitor
+install -m 0755 -d ${RPM_BUILD_ROOT}/etc/systemd/system
+install -m 0755 trackmonitor.service ${RPM_BUILD_ROOT}/etc/systemd/system/trackmonitor.service
 install -m 0755 monitoring.sh ${RPM_BUILD_ROOT}/etc/trackmonitor/monitoring.sh
 %clean
 rm -rf ${RPM_BUILD_ROOT}
-%post
-echo . .
-echo . Succesfully installed in ${RPM_BUILD_ROOT}/etc/trackmonitor
 %files
 %dir /etc/trackmonitor
 /etc/trackmonitor/monitoring.sh
+%dir /etc/systemd/system
+/etc/systemd/system/trackmonitor.service

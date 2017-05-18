@@ -1,0 +1,7 @@
+[Unit]
+Description=trackmonitor - service for track linux courses
+
+[Service]
+Type=oneshot
+ExecStart=/etc/trackmonitor/monitoring.sh
+
