@@ -1,8 +1,8 @@
 Name: trackmonitor
 Version: 1
-Release: 2
+Release: 4
 Summary: Script for mail track linux	
-Source: trackmonitor-1.2.tar.gz	
+Source: trackmonitor-1.4.tar.gz	
 License: GPL
 BuildArch: noarch
 BuildRoot: %{_tmppath}/%{name}-buildroot

@@ -1,1 +1,1 @@
-*/1 * * * * /etc/trackmonitor/monitoring.sh
+* * * * * /etc/trackmonitor/monitoring.sh
