@@ -5,3 +5,5 @@ Description=trackmonitor - service for track linux courses
 Type=oneshot
 ExecStart=/etc/trackmonitor/monitoring.sh
 
+[Install]
+WantedBy=multi-user.target

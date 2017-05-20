@@ -1,8 +1,8 @@
 Name: trackmonitor
 Version: 1
-Release: 6
+Release: 18
 Summary: Script for mail track linux	
-Source: trackmonitor-1.6.tar.gz	
+Source: trackmonitor-1.18.tar.gz	
 License: GPL
 BuildArch: noarch
 BuildRoot: %{_tmppath}/%{name}-buildroot
@@ -14,16 +14,21 @@ Oneshot script for logging current system state.
 %install
 install -m 0755 -d ${RPM_BUILD_ROOT}/etc/trackmonitor
 install -m 0755 -d ${RPM_BUILD_ROOT}/etc/systemd/system
-install -m 0755 -d ${RPM_BUILD_ROOT}/var/spool/cron
+install -m 0755 -d ${RPM_BUILD_ROOT}/etc/cron.d
 install -m 0755 -d ${RPM_BUILD_ROOT}/var/log/trackmonitor
 install -m 0755 -d ${RPM_BUILD_ROOT}/etc/rsyslog.d
-install -m 0755 etc/systemd/system/trackmonitor.service ${RPM_BUILD_ROOT}/etc/systemd/system/trackmonitor.service
+install -m 0644 etc/systemd/system/trackmonitor.service ${RPM_BUILD_ROOT}/etc/systemd/system/trackmonitor.service
 install -m 0755 etc/trackmonitor/monitoring.sh ${RPM_BUILD_ROOT}/etc/trackmonitor/monitoring.sh
-install -m 0755 var/spool/cron/monitoring ${RPM_BUILD_ROOT}/var/spool/cron/monitoring
-install -m 0755 etc/rsyslog.d/trackmonitor.conf ${RPM_BUILD_ROOT}/etc/rsyslog.d/trackmonitor.conf
+install -m 0644 etc/cron.d/trackmonitor ${RPM_BUILD_ROOT}/etc/cron.d/trackmonitor
+install -m 0644 etc/rsyslog.d/trackmonitor.conf ${RPM_BUILD_ROOT}/etc/rsyslog.d/trackmonitor.conf
 
 %post
-systemctl start trackmonitor.service
+systemctl enable trackmonitor.service
+
+%preun
+if [ $1 == 0 ]; then
+systemctl disable trackmonitor.service
+fi
 
 %clean
 rm -rf ${RPM_BUILD_ROOT}
@@ -31,6 +36,6 @@ rm -rf ${RPM_BUILD_ROOT}
 %dir /etc/trackmonitor
 /etc/trackmonitor/monitoring.sh
 /etc/systemd/system/trackmonitor.service
-/var/spool/cron/monitoring
+/etc/cron.d/trackmonitor
 /etc/rsyslog.d/trackmonitor.conf
 %dir /var/log/trackmonitor
