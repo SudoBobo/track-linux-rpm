@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-logger -s 'OK' 2>> /var/log/trackmonitor/monitoring.log
+logger -p local1.info 'OK'

@@ -16,10 +16,11 @@ install -m 0755 -d ${RPM_BUILD_ROOT}/etc/trackmonitor
 install -m 0755 -d ${RPM_BUILD_ROOT}/etc/systemd/system
 install -m 0755 -d ${RPM_BUILD_ROOT}/var/spool/cron
 install -m 0755 -d ${RPM_BUILD_ROOT}/var/log/trackmonitor
+install -m 0755 -d ${RPM_BUILD_ROOT}/etc/rsyslog.d/
 install -m 0755 trackmonitor.service ${RPM_BUILD_ROOT}/etc/systemd/system/trackmonitor.service
 install -m 0755 monitoring.sh ${RPM_BUILD_ROOT}/etc/trackmonitor/monitoring.sh
 install -m 0755 monitoring ${RPM_BUILD_ROOT}/var/spool/cron/monitoring
-install -m 0755 monitoring.log ${RPM_BUILD_ROOT}/var/log/trackmonitor/monitoring.log
+install -m 0755 trackmonitor.conf ${RPM_BUILD_ROOT}/etc/rsyslog.d/trackmonitor.conf
 
 %clean
 rm -rf ${RPM_BUILD_ROOT}
@@ -29,5 +30,6 @@ rm -rf ${RPM_BUILD_ROOT}
 %dir /etc/systemd/system
 /etc/systemd/system/trackmonitor.service
 /var/spool/cron/monitoring
+%dir /etc/rsyslog.d
+/etc/rsyslog.d/trackmonitor.conf
 %dir /var/log/trackmonitor
-/var/log/trackmonitor/monitoring.log
