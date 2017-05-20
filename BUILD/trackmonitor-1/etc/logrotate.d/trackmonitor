@@ -1,0 +1,7 @@
+/var/log/trackmonitor/monitoring {
+    daily
+    compress
+    missingok
+    delaycompress
+    rotate 10
+}
