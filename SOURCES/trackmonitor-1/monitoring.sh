@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-echo 'OK' >> /var/log/trackmonitor/monitoring.log
+logger -s 'OK' 2>> /var/log/trackmonitor/monitoring.log
